@@ -3,23 +3,21 @@ import java.util.List;
 
 public class RunningTimeOfAlgorithms{
     public static int runningTime(List<Integer> arrv) {
-        int aux = 0;
+        int count = 0;
         List<Integer> arr = arrv;
         for(int i = 1; i < arr.size(); i++){
+            int currentVal = arr.get(i);
             int j = i - 1;
-            while(j >= 0 && arr.get(j) > arr.get(i)){
-                if(arr.get(i) < arr.get(j)){
-                    aux = arr.get(j);
-                    arr.set(j, arr.get(i));
-                    arr.set(i, aux);
-                }
+            while(j >= 0 && arr.get(j) > currentVal){
+                arr.set(j + 1, arr.get(j));
+                j--;
+                count++;
             }
-        }
-        for(int i = 0; i < arr.size(); i++){
-            System.out.print(arr.get(i) + " ");
+
+            arr.set(j + 1, currentVal);
         }
 
-        return 0;
+        return count;
     }
     public static void main(String[] args){
         
